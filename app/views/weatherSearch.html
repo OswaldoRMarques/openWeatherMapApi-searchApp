@@ -1,0 +1,29 @@
+<div ng-controller="WeatherSearchController" ng-cloak>
+	<md-content layout-padding>
+		<form name="searchForm">
+			<md-input-container class="md-block">
+				 <label>Cidade</label>
+				 <input required name="cityName" ng-model="city.name">
+				 <div ng-messages="searchForm.cityName.$error">
+		         	<div ng-message="required">Esse campo é obrigatório.</div>
+		         </div>
+			</md-input-container>
+			<md-button class="md-raised md-primary" ng-click="search(city.name)" ng-disabled="searchForm.$invalid">Pesquisar</md-button>
+		</form>
+		
+		<md-card class="md-whiteframe-z3">
+			<md-content-card>
+				<div layout="row" layout-margin>
+					<h4>Previsão do tempo para hoje</h4>
+					<br/>
+					<label>{{weather.name}}, {{weather.sys.country}}</label><br/>
+					<h2>{{weather.main.temp |number: 1}}°C</h2>
+
+					<label class="md-warn">Máxima {{weather.main.temp_max |number: 1}}°C</label></br>
+					<label class="md-primary">Mínima {{weather.main.temp_min |number: 1}}°C</label></br>
+					<label ng-style="{color: 'green'}">Umidade {{weather.main.humidity}}%</label></br>
+				</div>
+			</md-content-card>
+		</md-card>
+	</md-content>
+</div>
